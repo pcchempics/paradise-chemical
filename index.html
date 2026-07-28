@@ -132,15 +132,13 @@
       align-self: center;
     }
 
-    .shield {
-      width: min(46vw, 520px);
-      aspect-ratio: 1 / 1;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      /* temporary shield until bear image is uploaded */
+.bear-shield {
+  display: block;
+  width: min(48vw, 560px);
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
       clip-path: polygon(
         50% 0%,
         92% 16%,
@@ -191,7 +189,7 @@
         grid-template-columns: 1fr auto;
         padding: 24px 22px;
       }
-
+      
       nav {
         grid-column: 1 / 3;
         grid-row: 2;
@@ -218,8 +216,8 @@
         grid-row: 1;
       }
 
-      .shield {
-        width: min(82vw, 430px);
+      .bear-shield {
+        width: min(84vw, 470px);
       }
 
       .side-label {
@@ -270,11 +268,13 @@
     ANTIETAM.
   </div>
 
-  <div class="hero">
-    <div class="shield">
-      PC
-    </div>
-  </div>
+<div class="hero">
+  <img
+    src="PARADISE-WEBSITE-SHIELD.png"
+    alt="Paradise Chemical bear shield"
+    class="bear-shield"
+  >
+</div>
 
   <div class="side-label right">
     MARYLAND.
