@@ -1,15 +1,291 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Paradise Chemical</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Paradise Chemical Pictures</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      background: #050607;
+      color: #f3f0e7;
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* subtle analog texture */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,0.03),
+          rgba(255,255,255,0.03) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+      z-index: 20;
+    }
+
+    header {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      align-items: start;
+      padding: 38px 4vw 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .brand {
+      color: #ffd43b;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      font-size: clamp(22px, 2.4vw, 36px);
+      line-height: 0.9;
+      letter-spacing: -1px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: clamp(24px, 5vw, 75px);
+      padding-top: 5px;
+    }
+
+    nav a {
+      color: #dedbd3;
+      text-decoration: none;
+      font-size: clamp(11px, 1vw, 15px);
+      letter-spacing: 2px;
+    }
+
+    nav a:hover {
+      color: #37e6df;
+    }
+
+    .japanese {
+      justify-self: end;
+      color: #ff623d;
+      font-size: clamp(24px, 2.5vw, 40px);
+      line-height: 1.15;
+      writing-mode: vertical-rl;
+      letter-spacing: 4px;
+    }
+
+    main {
+      min-height: calc(100vh - 120px);
+      display: grid;
+      grid-template-columns: 1fr minmax(300px, 620px) 1fr;
+      grid-template-rows: 1fr auto;
+      align-items: center;
+      padding: 0 6vw 50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .side-label {
+      color: #27e6df;
+      font-size: clamp(13px, 1.3vw, 20px);
+      letter-spacing: 4px;
+      align-self: center;
+    }
+
+    .side-label::after {
+      content: "";
+      display: block;
+      width: 140px;
+      max-width: 70%;
+      height: 2px;
+      background: #27e6df;
+      margin-top: 14px;
+    }
+
+    .side-label.right {
+      justify-self: end;
+      text-align: right;
+    }
+
+    .side-label.right::after {
+      margin-left: auto;
+    }
+
+    .hero {
+      text-align: center;
+      align-self: center;
+    }
+
+    .shield {
+      width: min(46vw, 520px);
+      aspect-ratio: 1 / 1;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      /* temporary shield until bear image is uploaded */
+      clip-path: polygon(
+        50% 0%,
+        92% 16%,
+        92% 58%,
+        80% 78%,
+        50% 100%,
+        20% 78%,
+        8% 58%,
+        8% 16%
+      );
+
+      background:
+        linear-gradient(
+          145deg,
+          #ff4e00 0%,
+          #ff6a00 65%,
+          #ff7b17 100%
+        );
+
+      border: 12px solid #38105c;
+      color: #38105c;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      font-size: clamp(80px, 13vw, 180px);
+    }
+
+    .consequence {
+      grid-column: 1 / 4;
+      justify-self: center;
+      text-align: center;
+      color: #2ee9e0;
+      letter-spacing: clamp(8px, 1.5vw, 18px);
+      font-size: clamp(18px, 2.2vw, 32px);
+      margin-top: -30px;
+    }
+
+    .arrow {
+      margin: 28px auto 0;
+      width: 24px;
+      height: 24px;
+      border-right: 2px solid #2ee9e0;
+      border-bottom: 2px solid #2ee9e0;
+      transform: rotate(45deg);
+    }
+
+    @media (max-width: 720px) {
+      header {
+        grid-template-columns: 1fr auto;
+        padding: 24px 22px;
+      }
+
+      nav {
+        grid-column: 1 / 3;
+        grid-row: 2;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 16px 24px;
+        margin-top: 24px;
+      }
+
+      .japanese {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      main {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        padding: 35px 22px 45px;
+        gap: 30px 10px;
+      }
+
+      .hero {
+        grid-column: 1 / 3;
+        grid-row: 1;
+      }
+
+      .shield {
+        width: min(82vw, 430px);
+      }
+
+      .side-label {
+        grid-row: 2;
+        align-self: start;
+      }
+
+      .side-label.right {
+        grid-column: 2;
+      }
+
+      .side-label::after {
+        width: 80px;
+      }
+
+      .consequence {
+        grid-column: 1 / 3;
+        grid-row: 3;
+        margin-top: 10px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <h1>PARADISE CHEMICAL</h1>
 
-    <p>Independent motion pictures.</p>
+<header>
+  <div class="brand">
+    PARADISE<br>
+    CHEMICAL
+  </div>
 
+  <nav>
     <a href="films.html">FILMS</a>
+    <a href="initiatives.html">INITIATIVES</a>
     <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <div class="japanese">
+    楽園化学
+  </div>
+</header>
+
+<main>
+
+  <div class="side-label">
+    ANTIETAM.
+  </div>
+
+  <div class="hero">
+    <div class="shield">
+      PC
+    </div>
+  </div>
+
+  <div class="side-label right">
+    MARYLAND.
+  </div>
+
+  <div class="consequence">
+    INDEPENDENT FILMS.
+    <div class="arrow"></div>
+  </div>
+
+</main>
+
 </body>
 </html>
